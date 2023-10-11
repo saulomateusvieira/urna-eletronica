@@ -1,0 +1,38 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    background: #eeeef0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.esquerda {
+    width: 30vw;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: antiquewhite;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
+.direita {
+    width: 30vw;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: antiquewhite;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
