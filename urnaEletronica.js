@@ -27,13 +27,13 @@ function urnaEletronica() {
     let encerrarVotacao;
     let senhaMesario;
     var audioConfirmacao = document.getElementById("audioConfirmacao");
-    const data = new Date ()
+    const data = new Date ();
     
         
-    console.log('Início do programa');
-    
-    console.clear();
+    console.log('Início do programa'+ Datafuncao().toLocaleString());
+    //console.clear();
     console.log('** CONFIGURAÇÃO DA URNA **');
+    console.log('Início do programa'+ Datafuncao().toLocaleString());
 
     senhaMesario = parseInt(prompt('Digite sua senha de mésário:'));
     
@@ -51,7 +51,7 @@ function urnaEletronica() {
     
     do {
 
-        console.clear();
+        //console.clear();
         console.log('Opções de voto:');
         console.log('[1] Candidato 1: ' + nomeCandidato1);
         console.log('[2] Candidato 2: ' + nomeCandidato2);
@@ -63,23 +63,20 @@ function urnaEletronica() {
         totalVotos++;
 
         if (voto === 1) {(confirm('Você está votando no candidato: [' + nomeCandidato1 + '] Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
-            votosCandidato1++
+            votosCandidato1++;
             audioConfirmacaofuncao().play();
         } else if (voto === 2) {(confirm('Você está votando no candidato: [' + nomeCandidato2 + '] Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
-            votosCandidato2++
+            votosCandidato2++;
             audioConfirmacaofuncao().play();
         } else if (voto === 3) {(confirm('Você está votando no candidato: [' + nomeCandidato3 + '] Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
-            votosCandidato3++
+            votosCandidato3++;
             audioConfirmacaofuncao().play();
         } else if (voto === 5) {(confirm('Você está votando em [Branco]. Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
-            votosBrancos++
+            votosBrancos++;
             audioConfirmacaofuncao().play();
-        } else if (voto !== 1,2,3,5,senhaMesario) {(confirm('Você está [Anulando] seu voto. Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
-            votosNulos++
-            audioConfirmacaofuncao().play();
-
+        } else if (voto === 0) {
+            return;
         } else if (voto === senhaMesario) {
-            
             // segundo passo de confirmação para encerrar
             encerrarVotacao = prompt('Deseja REALMENTE encerrar a votação? Digite [S] para Sim ou [N] para Não').toUpperCase();
             
@@ -101,7 +98,7 @@ function urnaEletronica() {
     } while (encerrarVotacao !== 'S');
 
     // Saída para o usuário: boletim de urna
-    console.clear();
+    //console.clear();
     console.log('** BOLETIM DE URNA **');
     console.log('Total de votos: ' + totalVotos);
 
@@ -129,7 +126,7 @@ function urnaEletronica() {
         }
 
         // exibição do ganhador
-        console.log('-------');
+        console.log('----------------------');
         if (ganhador) {
             console.log('O ganhador desta urna foi ' + nomeGanhador + ' com ' + votosGanhador + ' votos (' + (votosGanhador / totalVotos * 100).toFixed(2) + '%)');
         } else {
@@ -137,10 +134,9 @@ function urnaEletronica() {
         }
         
     } else {
-        console.log('Não houve votação  nesta urna');
+        console.log('Não houve votação nesta urna');
     }
 
-    console.log('Fim do programa');
+    console.log('Fim do programa' + Datafuncao().toLocaleString());
 
 }
-Datafuncao()
