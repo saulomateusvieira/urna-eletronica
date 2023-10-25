@@ -1,3 +1,13 @@
+function audioConfirmacaofuncao() {
+    var audioConfirmacao = document.getElementById("audioConfirmacao");
+    return audioConfirmacao;
+}
+
+function Datafuncao() {
+    var data = new Date ();
+    return data;
+}
+
 function urnaEletronica() {
 
     // declaração de variáveis
@@ -16,11 +26,12 @@ function urnaEletronica() {
     let nomeCandidato3;
     let encerrarVotacao;
     let senhaMesario;
-    var audioConfirmacao = document.getElementById("audioConfirmacao")
+    var audioConfirmacao = document.getElementById("audioConfirmacao");
+    const data = new Date ()
     
         
     console.log('Início do programa');
-
+    
     console.clear();
     console.log('** CONFIGURAÇÃO DA URNA **');
 
@@ -53,19 +64,19 @@ function urnaEletronica() {
 
         if (voto === 1) {(confirm('Você está votando no candidato: [' + nomeCandidato1 + '] Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
             votosCandidato1++
-            audioConfirmacao.play();
+            audioConfirmacaofuncao().play();
         } else if (voto === 2) {(confirm('Você está votando no candidato: [' + nomeCandidato2 + '] Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
             votosCandidato2++
-            audioConfirmacao.play();
+            audioConfirmacaofuncao().play();
         } else if (voto === 3) {(confirm('Você está votando no candidato: [' + nomeCandidato3 + '] Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
             votosCandidato3++
-            audioConfirmacao.play();
+            audioConfirmacaofuncao().play();
         } else if (voto === 5) {(confirm('Você está votando em [Branco]. Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
             votosBrancos++
-            audioConfirmacao.play();
+            audioConfirmacaofuncao().play();
         } else if (voto !== 1,2,3,5,senhaMesario) {(confirm('Você está [Anulando] seu voto. Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
             votosNulos++
-            audioConfirmacao.play();
+            audioConfirmacaofuncao().play();
 
         } else if (voto === senhaMesario) {
             
@@ -132,3 +143,4 @@ function urnaEletronica() {
     console.log('Fim do programa');
 
 }
+Datafuncao()
