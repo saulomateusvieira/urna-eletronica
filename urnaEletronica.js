@@ -26,9 +26,14 @@ function urnaEletronica() {
     let nomeCandidato3;
     let encerrarVotacao;
     let senhaMesario;
+    let configuracaoInicial = true;
     var audioConfirmacao = document.getElementById("audioConfirmacao");
     const data = new Date ();
-    
+    /*let candidatos = [
+        [21, Arnaldo, PPP]
+        [35, Fernando, PDL]
+        [42, Pedro, PAB]
+    ]*/
         
     console.log('Início do programa'+ Datafuncao().toLocaleString());
     //console.clear();
@@ -37,10 +42,28 @@ function urnaEletronica() {
 
     senhaMesario = parseInt(prompt('Digite sua senha de mésário:'));
     
-    do {
+    do { if (configuracaoInicial) {
         nomeCandidato1 = prompt('Digite o nome do candidato 1:');
         nomeCandidato2 = prompt('Digite o nome do candidato 2:');
         nomeCandidato3 = prompt('Digite o nome do candidato 3:');
+        configuracaoInicial = false
+    } else  {
+        opcaoNome = parseInt(prompt(
+            'Qual nome deseja alterar?\n\n' +
+            '[1] ' + nomeCandidato1 + '\n' +
+            '[2] ' + nomeCandidato2 + '\n' +
+            '[3] ' + nomeCandidato3 + '\n' 
+        ));
+
+        if (opcaoNome === 1)
+        nomeCandidato1 = prompt('Digite o nome do candidato 1:');
+    else if (opcaoNome === 2)
+        nomeCandidato2 = prompt('Digite o nome do candidato 2:');
+    else if (opcaoNome === 3)
+        nomeCandidato3 = prompt('Digite o nome do candidato 3:');
+    else
+        alert('Opção inválida!');
+}
 
         console.log('** NOMES DOS CANDIDATOS **');
         console.log('Candidato 1: ' + nomeCandidato1);
@@ -105,11 +128,11 @@ function urnaEletronica() {
     // se houver votação
     if (totalVotos > 0) {
 
-        console.log('Total de votos do candidato(a) ' + nomeCandidato1 + ': ' + votosCandidato1 + ' votos (' + (votosCandidato1 / totalVotos * 100).toFixed(2) + '%)');
-        console.log('Total de votos do candidato(a) ' + nomeCandidato2 + ': ' + votosCandidato2 + ' votos (' + (votosCandidato2 / totalVotos * 100).toFixed(2) + '%)');
-        console.log('Total de votos do candidato(a) ' + nomeCandidato3 + ': ' + votosCandidato3 + ' votos (' + (votosCandidato3 / totalVotos * 100).toFixed(2) + '%)');
-        console.log('Total de votos brancos: ' + votosBrancos + ' votos (' + (votosBrancos / totalVotos * 100).toFixed(2) + '%)');
-        console.log('Total de votos nulos: ' + votosNulos + ' votos (' + (votosNulos / totalVotos * 100).toFixed(2) + '%)');
+        console.log(`Total de votos do(a) candidato(a) ${nomeCandidato1}: ${votosCandidato1} voto(s) (${(votosCandidato1 / totalVotos * 100).toFixed(2)}%)`);
+        console.log(`Total de votos do(a) candidato(a) ${nomeCandidato2}: ${votosCandidato2} voto(s) (${(votosCandidato2 / totalVotos * 100).toFixed(2)}%)`);
+        console.log(`Total de votos do(a) candidato(a) ${nomeCandidato3}: ${votosCandidato3} voto(s) (${(votosCandidato3 / totalVotos * 100).toFixed(2)}%)`);
+        console.log(`Total de votos brancos: ${votosBrancos} voto(s) ${(votosBrancos / totalVotos * 100).toFixed(2)}%)`);
+        console.log(`Total de votos nulos: ${votosNulos} voto(s) (${(votosNulos / totalVotos * 100).toFixed(2)} + '%)`);
 
         // determinação do ganhador
         if (votosCandidato1 > votosCandidato2 && votosCandidato1 > votosCandidato3) {
