@@ -8,6 +8,31 @@ function Datafuncao() {
     return data;
 }
 
+function verificarIntegridadeUrna() {
+
+    // Biblioteca CryptoJS: https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js
+
+    fetch('./urnaEletronica.js')
+        .then(conteudo => conteudo.text())
+        .then(conteudo => CryptoJS.SHA256(conteudo).toString())
+        .then(hashUrnaAtual => {
+            fetch('./hashVerificado')
+                .then(conteudo => conteudo.text())
+                .then(hashVerificado => {
+                    if (hashUrnaAtual === hashVerificado) {
+                        console.log('Hash verificado, urna íntegra.')
+                    } else {
+                        console.log('HASHES DIFERENTES, URNA ADULTERADA!');
+                        console.log(`Hash esperado: ${hashVerificado}`);
+                        console.log(`Hash da urna: ${hashUrnaAtual}`);
+                    }
+                })
+        }); 
+
+}
+//54804bdc60fee7787ea36dc16092894d0013aca07a015930e64bb35a3ad48a3a
+
+
 function urnaEletronica() {
 
     // declaração de variáveis
@@ -160,6 +185,9 @@ function urnaEletronica() {
         console.log('Não houve votação nesta urna');
     }
 
+ verificarIntegridadeUrna();
+
     console.log('Fim do programa' + Datafuncao().toLocaleString());
 
 }
+
