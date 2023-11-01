@@ -1,0 +1,9 @@
+{ "candidatos" : [
+    {"Numero" : 21, "Arnaldo"},
+    {"Numero" : 35, "Fernando"},
+    {"Numero" : 42, "Pedro"},
+    {"Numero" : 57, "Joao"},
+    {"Numero" : 63, "Carlos"},
+    {"Numero" : 00, "Branco"}
+    ]
+};

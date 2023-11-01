@@ -8,26 +8,27 @@ function Datafuncao() {
     return data;
 }
 
-function verificarIntegridadeUrna() {
+async function verificarIntegridadeUrna() {
 
     // Biblioteca CryptoJS: https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js
 
-    fetch('./urnaEletronica.js')
+    let hashUrnaAtual;
+    let hashVerificado;
+
+    await fetch('urnaEletronica.js')
         .then(conteudo => conteudo.text())
         .then(conteudo => CryptoJS.SHA256(conteudo).toString())
-        .then(hashUrnaAtual => {
-            fetch('./hashVerificado')
-                .then(conteudo => conteudo.text())
-                .then(hashVerificado => {
-                    if (hashUrnaAtual === hashVerificado) {
-                        console.log('Hash verificado, urna íntegra.')
-                    } else {
-                        console.log('HASHES DIFERENTES, URNA ADULTERADA!');
-                        console.log(`Hash esperado: ${hashVerificado}`);
-                        console.log(`Hash da urna: ${hashUrnaAtual}`);
-                    }
-                })
-        }); 
+        .then(conteudo => hashUrnaAtual = conteudo);
+    
+    await fetch('hashVerificado')
+        .then(conteudo => conteudo.text())
+        .then(conteudo => hashVerificado = conteudo);
+        
+    return {
+        status: hashUrnaAtual === hashVerificado,
+        hashUrnaAtual: hashUrnaAtual,
+        hashVerificado: hashVerificado
+    };
 
 }
 //54804bdc60fee7787ea36dc16092894d0013aca07a015930e64bb35a3ad48a3a
@@ -65,11 +66,13 @@ function urnaEletronica() {
         [63, 'Carlos'],
         ['00', 'Branco']
         ]
-        
-
+    
     //console.clear();
     console.log('** CONFIGURAÇÃO DA URNA **');
     console.log('Início do programa'+ Datafuncao().toLocaleString());
+
+fetch()
+        .then()
 
     senhaMesario = parseInt(prompt('Digite sua senha de mésário:'));
     
