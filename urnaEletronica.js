@@ -39,6 +39,8 @@ function urnaEletronica() {
     let votosCandidato1 = 0;
     let votosCandidato2 = 0;
     let votosCandidato3 = 0;
+    let votosCandidato4 = 0;
+    let votosCandidato5 = 0;
     let votosBrancos = 0;
     let votosNulos = 0;
     let totalVotos = 0;
@@ -54,76 +56,47 @@ function urnaEletronica() {
     let configuracaoInicial = true;
     var audioConfirmacao = document.getElementById("audioConfirmacao");
     const data = new Date ();
-    /*let candidatos = [
-        [21, Arnaldo, PPP]
-        [35, Fernando, PDL]
-        [42, Pedro, PAB]
-    ]*/
+    
+    let candidatos = [
+        [21, 'Arnaldo'],
+        [35, 'Fernando'],
+        [42, 'Pedro'],
+        [57, 'Joao'],
+        [63, 'Carlos'],
+        ['00', 'Branco']
+        ]
         
-    console.log('Início do programa'+ Datafuncao().toLocaleString());
+
     //console.clear();
     console.log('** CONFIGURAÇÃO DA URNA **');
     console.log('Início do programa'+ Datafuncao().toLocaleString());
 
     senhaMesario = parseInt(prompt('Digite sua senha de mésário:'));
     
-    do { if (configuracaoInicial) {
-        nomeCandidato1 = prompt('Digite o nome do candidato 1:');
-        nomeCandidato2 = prompt('Digite o nome do candidato 2:');
-        nomeCandidato3 = prompt('Digite o nome do candidato 3:');
-        configuracaoInicial = false
-    } else  {
-        opcaoNome = parseInt(prompt(
-            'Qual nome deseja alterar?\n\n' +
-            '[1] ' + nomeCandidato1 + '\n' +
-            '[2] ' + nomeCandidato2 + '\n' +
-            '[3] ' + nomeCandidato3 + '\n' 
-        ));
-
-        if (opcaoNome === 1)
-        nomeCandidato1 = prompt('Digite o nome do candidato 1:');
-    else if (opcaoNome === 2)
-        nomeCandidato2 = prompt('Digite o nome do candidato 2:');
-    else if (opcaoNome === 3)
-        nomeCandidato3 = prompt('Digite o nome do candidato 3:');
-    else
-        alert('Opção inválida!');
-}
-
-        console.log('** NOMES DOS CANDIDATOS **');
-        console.log('Candidato 1: ' + nomeCandidato1);
-        console.log('Candidato 2: ' + nomeCandidato2);
-        console.log('Candidato 3: ' + nomeCandidato3);
-
-    } while  (!confirm(nomeCandidato1 + ", " + nomeCandidato2 + " e " + nomeCandidato3 + '. Se os nomes dos candidatos estão corretos, clique OK para continuar ou CANCELAR para voltar e digitar novamente'));
-    
-    do {
-
-        //console.clear();
+    do {//console.clear();
         console.log('Opções de voto:');
-        console.log('[1] Candidato 1: ' + nomeCandidato1);
-        console.log('[2] Candidato 2: ' + nomeCandidato2);
-        console.log('[3] Candidato 3: ' + nomeCandidato3);
-        console.log('[5] Voto em branco');
+        for (i = 0; i < candidatos.length; i++) {
+            console.log(candidatos[i][0]); console.log(candidatos[i][1]); console.log(candidatos[i][2]); 
+        }
 
         voto = parseInt(prompt('Digite sua opção de voto:'));
 
         totalVotos++;
 
-        if (voto === 1) {(confirm('Você está votando no candidato: [' + nomeCandidato1 + '] Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
+        if (voto === candidatos[0][0]) {(confirm('Você está votando no candidato: [' + candidatos[0][1] + '] Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
             votosCandidato1++;
             audioConfirmacaofuncao().play();
-        } else if (voto === 2) {(confirm('Você está votando no candidato: [' + nomeCandidato2 + '] Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
+        } else if (voto === candidatos[1][0]) {(confirm('Você está votando no candidato: [' + candidatos[1][1] + '] Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
             votosCandidato2++;
             audioConfirmacaofuncao().play();
-        } else if (voto === 3) {(confirm('Você está votando no candidato: [' + nomeCandidato3 + '] Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
+        } else if (voto === candidatos[2][0]) {(confirm('Você está votando no candidato: [' + candidatos[2][1] + '] Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
             votosCandidato3++;
             audioConfirmacaofuncao().play();
-        } else if (voto === 5) {(confirm('Você está votando em [Branco]. Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
+        } else if (voto == candidatos[3][0]) {(confirm('Você está votando em [Branco]. Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
             votosBrancos++;
             audioConfirmacaofuncao().play();
-        } else if (voto === 0) {
-            return;
+        /*} else if (voto === 0) {
+            return;*/
         } else if (voto === senhaMesario) {
             // segundo passo de confirmação para encerrar
             encerrarVotacao = prompt('Deseja REALMENTE encerrar a votação? Digite [S] para Sim ou [N] para Não').toUpperCase();
@@ -160,16 +133,25 @@ function urnaEletronica() {
         console.log(`Total de votos nulos: ${votosNulos} voto(s) (${(votosNulos / totalVotos * 100).toFixed(2)} + '%)`);
 
         // determinação do ganhador
-        if (votosCandidato1 > votosCandidato2 && votosCandidato1 > votosCandidato3) {
+        if (votosCandidato1 > votosCandidato2 && votosCandidato1 > votosCandidato3 && votosCandidato1 > votosCandidato4 && votosCandidato1 > votosCandidato5) {
             nomeGanhador = nomeCandidato1;
             votosGanhador = votosCandidato1 + votosBrancos;
-        } else if (votosCandidato2 > votosCandidato1 && votosCandidato2 > votosCandidato3) {
+        } else if (votosCandidato2 > votosCandidato1 && votosCandidato2 > votosCandidato3 && votosCandidato2 > votosCandidato4 && votosCandidato2 > votosCandidato5) {
             nomeGanhador = nomeCandidato2;
             votosGanhador = votosCandidato2 + votosBrancos;
-        } else if (votosCandidato3 > votosCandidato1 && votosCandidato3 > votosCandidato2) {
+        } else if (votosCandidato3 > votosCandidato1 && votosCandidato3 > votosCandidato2 && votosCandidato3 > votosCandidato4 && votosCandidato3 > votosCandidato5) {
             nomeGanhador = nomeCandidato3;
             votosGanhador = votosCandidato3 + votosBrancos;
-        } else {
+        } 
+          else if (votosCandidato4 > votosCandidato1 && votosCandidato4 > votosCandidato2 && votosCandidato4 > votosCandidato3 && votosCandidato4 > votosCandidato5) {
+            nomeGanhador = nomeCandidato4;
+            votosGanhador = votosCandidato4 + votosBrancos;
+        } 
+          else if (votosCandidato5 > votosCandidato1 && votosCandidato5 > votosCandidato2 && votosCandidato5 > votosCandidato3 && votosCandidato5 > votosCandidato4) {
+            nomeGanhador = nomeCandidato5;
+            votosGanhador = votosCandidato5 + votosBrancos;
+        } 
+          else {
             ganhador = false;
         }
 
