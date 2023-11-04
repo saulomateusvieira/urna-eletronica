@@ -58,28 +58,28 @@ function urnaEletronica() {
     var audioConfirmacao = document.getElementById("audioConfirmacao");
     const data = new Date ();
     
+    
     let candidatos = [
         [21, 'Arnaldo'],
         [35, 'Fernando'],
         [42, 'Pedro'],
         [57, 'Joao'],
         [63, 'Carlos'],
-        ['00', 'Branco']
+        ["00", 'Branco']
         ]
     
     //console.clear();
     console.log('** CONFIGURAÇÃO DA URNA **');
     console.log('Início do programa'+ Datafuncao().toLocaleString());
 
-fetch()
-        .then()
+   
 
     senhaMesario = parseInt(prompt('Digite sua senha de mésário:'));
     
     do {//console.clear();
         console.log('Opções de voto:');
         for (i = 0; i < candidatos.length; i++) {
-            console.log(candidatos[i][0]); console.log(candidatos[i][1]); console.log(candidatos[i][2]); 
+            console.log(candidatos[i][0]); console.log(candidatos[i][1]);
         }
 
         voto = parseInt(prompt('Digite sua opção de voto:'));
@@ -95,7 +95,13 @@ fetch()
         } else if (voto === candidatos[2][0]) {(confirm('Você está votando no candidato: [' + candidatos[2][1] + '] Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
             votosCandidato3++;
             audioConfirmacaofuncao().play();
-        } else if (voto == candidatos[3][0]) {(confirm('Você está votando em [Branco]. Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
+        } else if (voto === candidatos[3][0]) {(confirm('Você está votando no candidato: [' + candidatos[3][1] + '] Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
+            votosBrancos++;
+            audioConfirmacaofuncao().play();
+        } else if (voto === candidatos[4][0]) {(confirm('Você está votando no candidato: [' + candidatos[4][1] + '] Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
+            votosBrancos++;
+            audioConfirmacaofuncao().play();
+        } else if (voto === candidatos[5][0]) {(confirm('Você está votando em ['+ candidatos[5][1] +']. Deseja prosseguir? Pressione [ok] para prosseguir ou [cancelar] para votar novamente'))
             votosBrancos++;
             audioConfirmacaofuncao().play();
         /*} else if (voto === 0) {
@@ -129,29 +135,31 @@ fetch()
     // se houver votação
     if (totalVotos > 0) {
 
-        console.log(`Total de votos do(a) candidato(a) ${nomeCandidato1}: ${votosCandidato1} voto(s) (${(votosCandidato1 / totalVotos * 100).toFixed(2)}%)`);
-        console.log(`Total de votos do(a) candidato(a) ${nomeCandidato2}: ${votosCandidato2} voto(s) (${(votosCandidato2 / totalVotos * 100).toFixed(2)}%)`);
-        console.log(`Total de votos do(a) candidato(a) ${nomeCandidato3}: ${votosCandidato3} voto(s) (${(votosCandidato3 / totalVotos * 100).toFixed(2)}%)`);
-        console.log(`Total de votos brancos: ${votosBrancos} voto(s) ${(votosBrancos / totalVotos * 100).toFixed(2)}%)`);
-        console.log(`Total de votos nulos: ${votosNulos} voto(s) (${(votosNulos / totalVotos * 100).toFixed(2)} + '%)`);
+        console.log(`Total de votos do(a) candidato(a) ${candidatos[0][1]}: ${votosCandidato1} voto(s) (${(votosCandidato1 / totalVotos * 100).toFixed(2)}%)`);
+        console.log(`Total de votos do(a) candidato(a) ${candidatos[1][1]}: ${votosCandidato2} voto(s) (${(votosCandidato2 / totalVotos * 100).toFixed(2)}%)`);
+        console.log(`Total de votos do(a) candidato(a) ${candidatos[2][1]}: ${votosCandidato3} voto(s) (${(votosCandidato3 / totalVotos * 100).toFixed(2)}%)`);
+        console.log(`Total de votos do(a) candidato(a) ${candidatos[3][1]}: ${votosCandidato2} voto(s) (${(votosCandidato2 / totalVotos * 100).toFixed(2)}%)`);
+        console.log(`Total de votos do(a) candidato(a) ${candidatos[4][1]}: ${votosCandidato3} voto(s) (${(votosCandidato3 / totalVotos * 100).toFixed(2)}%)`);
+        console.log(`Total de votos brancos: ${votosBrancos} voto(s) ${(votosBrancos / totalVotos * 100).toFixed(2)} %`);
+        console.log(`Total de votos nulos: ${votosNulos} voto(s) ${(votosNulos / totalVotos * 100).toFixed(2)} + %`);
 
         // determinação do ganhador
         if (votosCandidato1 > votosCandidato2 && votosCandidato1 > votosCandidato3 && votosCandidato1 > votosCandidato4 && votosCandidato1 > votosCandidato5) {
-            nomeGanhador = nomeCandidato1;
+            nomeGanhador = candidatos[0][1];
             votosGanhador = votosCandidato1 + votosBrancos;
         } else if (votosCandidato2 > votosCandidato1 && votosCandidato2 > votosCandidato3 && votosCandidato2 > votosCandidato4 && votosCandidato2 > votosCandidato5) {
-            nomeGanhador = nomeCandidato2;
+            nomeGanhador = candidatos[1][1];
             votosGanhador = votosCandidato2 + votosBrancos;
         } else if (votosCandidato3 > votosCandidato1 && votosCandidato3 > votosCandidato2 && votosCandidato3 > votosCandidato4 && votosCandidato3 > votosCandidato5) {
-            nomeGanhador = nomeCandidato3;
+            nomeGanhador = candidatos[2][1];
             votosGanhador = votosCandidato3 + votosBrancos;
         } 
           else if (votosCandidato4 > votosCandidato1 && votosCandidato4 > votosCandidato2 && votosCandidato4 > votosCandidato3 && votosCandidato4 > votosCandidato5) {
-            nomeGanhador = nomeCandidato4;
+            nomeGanhador = candidatos[3][1];
             votosGanhador = votosCandidato4 + votosBrancos;
         } 
           else if (votosCandidato5 > votosCandidato1 && votosCandidato5 > votosCandidato2 && votosCandidato5 > votosCandidato3 && votosCandidato5 > votosCandidato4) {
-            nomeGanhador = nomeCandidato5;
+            nomeGanhador = candidatos[4][1];
             votosGanhador = votosCandidato5 + votosBrancos;
         } 
           else {
@@ -161,7 +169,7 @@ fetch()
         // exibição do ganhador
         console.log('----------------------');
         if (ganhador) {
-            console.log('O ganhador desta urna foi ' + nomeGanhador + ' com ' + votosGanhador + ' votos (' + (votosGanhador / totalVotos * 100).toFixed(2) + '%)');
+            console.log('O ganhador desta urna foi ' + nomeGanhador + ' com ' + votosGanhador + ' votos ' + (votosGanhador / totalVotos * 100).toFixed(2) + '%');
         } else {
             console.log('Não houve ganhador nesta urna (empate entre 2 ou mais candidatos');
         }

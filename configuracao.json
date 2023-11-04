@@ -1,9 +1,21 @@
-{ "candidatos" : [
-    {"Numero" : 21, "Arnaldo"},
-    {"Numero" : 35, "Fernando"},
-    {"Numero" : 42, "Pedro"},
-    {"Numero" : 57, "Joao"},
-    {"Numero" : 63, "Carlos"},
-    {"Numero" : 00, "Branco"}
-    ]
-};
+{ "candidaturas" : [
+    {"Numero" : 21,
+    "Nome": "Arnaldo"
+    },
+    {"Numero" : 35,
+    "Nome": "Fernando"
+    },
+    {"Numero" : 42,
+    "Nome": "Pedro"
+    },
+    {"Numero" : 57,
+    "Nome": "Joao"
+    },
+    {"Numero" : 63,
+    "Nome": "Carlos"
+    },
+    {"Numero" : 0,
+    "Nome": "Branco"
+    }   
+]
+}
