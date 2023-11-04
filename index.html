@@ -21,12 +21,12 @@
     </div>
     </div>
     <div id="candidaturas"></div>
-    <script>
-        let divCandidaturas = document.querySelector("#candidaturas")
+ <script>
+    let divCandidaturas = document.querySelector("#candidaturas")
     
-        fetch("dados.json").then((response)=>{
-            response.json().then((dados)=>{
-                dados.candidaturas.map((candidaturas) => {
+        fetch("configuracao.json").then((response)=>{
+            response.json().then((configuracao)=>{
+                configuracao.candidaturas.map((candidatura) => {
                     divCandidaturas.innerHTML += `<li> ${candidatura.Numero} - ${candidatura.Nome}</li>`
                 })
               
